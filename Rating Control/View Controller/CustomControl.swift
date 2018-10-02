@@ -44,6 +44,8 @@ class CustomControl: UIControl {
         }
     }
     
+    // MARK: Setting CustomControl's size
+    
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
         let componentsSpacing = CGFloat(componentCount + 1) * 8.0
@@ -51,4 +53,42 @@ class CustomControl: UIControl {
         return CGSize(width: width, height: componentDimension)
     }
     
+    // MARK: - Add touch handler
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        sendActions(for: .touchDown)
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchDragInside)
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchDragInside)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+    
+    // MARK: - Update value
+    
+    func updateValue(at touch: UITouch) {
+        
+    }
 }
