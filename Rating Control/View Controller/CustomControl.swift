@@ -26,26 +26,32 @@ class CustomControl: UIControl {
         setup()
     }
     
+    // MARK: Setup
+    
     func setup() {
         for i in 1...5 {
-            let aFrame = CGRect(x: 0, y: 0, width: componentDimension, height: componentDimension)
-            let star = UILabel(frame: aFrame)
+            let star = UILabel()
             star.tag = i
             self.addSubview(star)
             stars.append(star)
-        }
-        // TODO: - Make them layout in a row
-        for star in stars {
-            star.layoutMargins = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: (componentDimension + 16.0))
-            star.font = UIFont.boldSystemFont(ofSize: 32.0)
-            star.text = "✩"
-            star.textAlignment = .center
-            star.textColor = componentActiveColor
+            
+            // TODO: - Make them layout in a row
+            for star in stars {
+                star.frame.size = CGSize(width: componentDimension, height: componentDimension)
+                star.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                star.font = UIFont.boldSystemFont(ofSize: 32.0)
+                star.text = "✩"
+                star.textAlignment = .center
+                if star.tag == 1 {
+                    star.textColor = componentActiveColor
+                } else {
+                    star.textColor = componentInactiveColor
+                }
+            }
         }
     }
     
-    // MARK: Setting CustomControl's size
-    
+    ///From instruction. Setting CustomControl's size
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
         let componentsSpacing = CGFloat(componentCount + 1) * 8.0
@@ -89,6 +95,26 @@ class CustomControl: UIControl {
     // MARK: - Update value
     
     func updateValue(at touch: UITouch) {
+        for star in stars {
+            let touchPoint = touch.location(in: self)
+            if star.frame.contains(touchPoint) {
+                value = star.tag
+                star.textColor = componentActiveColor
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
+}
+
+/// From instruction
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
         
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }

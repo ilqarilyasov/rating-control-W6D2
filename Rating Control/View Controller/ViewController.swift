@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "User Rating"
     }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
