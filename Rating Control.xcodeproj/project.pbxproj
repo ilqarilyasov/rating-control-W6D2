@@ -56,15 +56,47 @@
 		826CF6232163FFA700F1FB80 /* Rating Control */ = {
 			isa = PBXGroup;
 			children = (
+				826CF63C2163FFC900F1FB80 /* View Controller */,
+				826CF63B2163FFC200F1FB80 /* Stroyboard */,
+				826CF63A2163FFBC00F1FB80 /* Model */,
+				826CF6392163FFB300F1FB80 /* Resources */,
+			);
+			path = "Rating Control";
+			sourceTree = "<group>";
+		};
+		826CF6392163FFB300F1FB80 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				826CF6242163FFA700F1FB80 /* AppDelegate.swift */,
-				826CF6262163FFA700F1FB80 /* ViewController.swift */,
-				826CF6282163FFA700F1FB80 /* Main.storyboard */,
 				826CF62E2163FFA800F1FB80 /* Assets.xcassets */,
 				826CF6302163FFA800F1FB80 /* LaunchScreen.storyboard */,
 				826CF6332163FFA800F1FB80 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		826CF63A2163FFBC00F1FB80 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				826CF62B2163FFA700F1FB80 /* Rating_Control.xcdatamodeld */,
 			);
-			path = "Rating Control";
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826CF63B2163FFC200F1FB80 /* Stroyboard */ = {
+			isa = PBXGroup;
+			children = (
+				826CF6282163FFA700F1FB80 /* Main.storyboard */,
+			);
+			path = Stroyboard;
+			sourceTree = "<group>";
+		};
+		826CF63C2163FFC900F1FB80 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				826CF6262163FFA700F1FB80 /* ViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
