@@ -13,6 +13,7 @@
 		826CF62D2163FFA700F1FB80 /* Rating_Control.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826CF62B2163FFA700F1FB80 /* Rating_Control.xcdatamodeld */; };
 		826CF62F2163FFA800F1FB80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826CF62E2163FFA800F1FB80 /* Assets.xcassets */; };
 		826CF6322163FFA800F1FB80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826CF6302163FFA800F1FB80 /* LaunchScreen.storyboard */; };
+		826CF63E216400C600F1FB80 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CF63D216400C600F1FB80 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		826CF62E2163FFA800F1FB80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		826CF6312163FFA800F1FB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		826CF6332163FFA800F1FB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826CF63D216400C600F1FB80 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomControl.swift; path = "Rating Control/View Controller/CustomControl.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		826CF63C2163FFC900F1FB80 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				826CF63D216400C600F1FB80 /* CustomControl.swift */,
 				826CF6262163FFA700F1FB80 /* ViewController.swift */,
 			);
 			path = "View Controller";
@@ -172,6 +175,7 @@
 			files = (
 				826CF62D2163FFA700F1FB80 /* Rating_Control.xcdatamodeld in Sources */,
 				826CF6272163FFA700F1FB80 /* ViewController.swift in Sources */,
+				826CF63E216400C600F1FB80 /* CustomControl.swift in Sources */,
 				826CF6252163FFA700F1FB80 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Rating Control/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Rating Control/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -336,7 +340,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Rating Control/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Rating Control/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
