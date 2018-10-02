@@ -35,18 +35,20 @@ class CustomControl: UIControl {
             self.addSubview(star)
             stars.append(star)
             
-            // TODO: - Make them layout in a row
-            for star in stars {
-                star.frame.size = CGSize(width: componentDimension, height: componentDimension)
-                star.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-                star.font = UIFont.boldSystemFont(ofSize: 32.0)
-                star.text = "✩"
-                star.textAlignment = .center
-                if star.tag == 1 {
-                    star.textColor = componentActiveColor
-                } else {
-                    star.textColor = componentInactiveColor
-                }
+            let offset = (CGFloat(i-1)*componentDimension) + (CGFloat(i)*8.0)
+            let origin = CGPoint(x: offset, y: 0)
+            let size = CGSize(width: componentDimension, height: componentDimension)
+            
+            star.frame = CGRect(origin: origin, size: size)
+            
+            star.font = UIFont.boldSystemFont(ofSize: 32.0)
+            star.text = "✩"
+            star.textAlignment = .center
+            
+            if star.tag == 1 {
+                star.textColor = componentActiveColor
+            } else {
+                star.textColor = componentInactiveColor
             }
         }
     }
