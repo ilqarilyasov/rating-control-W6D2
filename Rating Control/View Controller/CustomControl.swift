@@ -26,20 +26,28 @@ class CustomControl: UIControl {
         setup()
     }
     
+    
+    ///From instruction. Setting CustomControl's size
+    override var intrinsicContentSize: CGSize {
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
+    }
+    
     // MARK: Setup
     
     func setup() {
-        for i in 1...5 {
+        backgroundColor = .clear
+        frame = CGRect(origin: .zero, size: intrinsicContentSize)
+        for i in 1...componentCount {
             let star = UILabel()
             star.tag = i
             self.addSubview(star)
             stars.append(star)
             
             let offset = (CGFloat(i-1)*componentDimension) + (CGFloat(i)*8.0)
-            let origin = CGPoint(x: offset, y: 0)
-            let size = CGSize(width: componentDimension, height: componentDimension)
-            
-            star.frame = CGRect(origin: origin, size: size)
+            star.frame = CGRect(x: offset, y: 0, width: componentDimension, height: componentDimension)
             
             star.font = UIFont.boldSystemFont(ofSize: 32.0)
             star.text = "✩"
@@ -52,14 +60,7 @@ class CustomControl: UIControl {
             }
         }
     }
-    
-    ///From instruction. Setting CustomControl's size
-    override var intrinsicContentSize: CGSize {
-        let componentsWidth = CGFloat(componentCount) * componentDimension
-        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
-        let width = componentsWidth + componentsSpacing
-        return CGSize(width: width, height: componentDimension)
-    }
+
     
     // MARK: - Add touch handler
     
@@ -101,8 +102,19 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: self)
             if star.frame.contains(touchPoint) {
                 value = star.tag
+                updateLabelColor()
+                star.performFlare()
+            }
+            sendActions(for: .valueChanged)
+        }
+    }
+    
+    func updateLabelColor() {
+        for star in stars {
+            if star.tag <= value {
                 star.textColor = componentActiveColor
-                sendActions(for: .valueChanged)
+            } else {
+                star.textColor = componentInactiveColor
             }
         }
     }
