@@ -40,24 +40,19 @@ class CustomControl: UIControl {
     func setup() {
         backgroundColor = .clear
         frame = CGRect(origin: .zero, size: intrinsicContentSize)
-        for i in 1...componentCount {
+        for index in 1...componentCount {
             let star = UILabel()
-            star.tag = i
             self.addSubview(star)
             stars.append(star)
             
-            let offset = (CGFloat(i-1)*componentDimension) + (CGFloat(i)*8.0)
+            let offset = (CGFloat(index-1)*componentDimension) + (CGFloat(index)*8.0)
             star.frame = CGRect(x: offset, y: 0, width: componentDimension, height: componentDimension)
             
+            star.tag = index
             star.font = UIFont.boldSystemFont(ofSize: 32.0)
             star.text = "✩"
             star.textAlignment = .center
-            
-            if star.tag == 1 {
-                star.textColor = componentActiveColor
-            } else {
-                star.textColor = componentInactiveColor
-            }
+            star.textColor = star.tag == 1 ? componentActiveColor : componentInactiveColor
         }
     }
 
@@ -99,13 +94,20 @@ class CustomControl: UIControl {
     
     func updateValue(at touch: UITouch) {
         for star in stars {
+            let oldValue = value
+            
             let touchPoint = touch.location(in: self)
             if star.frame.contains(touchPoint) {
                 value = star.tag
-                updateLabelColor()
-                star.performFlare()
+                
+                if value != oldValue {
+                    updateLabelColor()
+                    star.performFlare()
+                    sendActions(for: .valueChanged)
+                } else {
+                    star.performFlare()
+                }
             }
-            sendActions(for: .valueChanged)
         }
     }
     
